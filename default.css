@@ -26,6 +26,38 @@
 .grid {
     /* -fx-background-color : #fff2cc; */
     -fx-background-image : url("newspaper-texture.jpg");
+
+    /* The following rules are meant for background images.
+       Commented out since I don't need it for the current rule.
+       Placed here for reference. I might need them for some other rules.
+ 
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+    */
+
+    -fx-background-radius : 5.0;
+    -fx-background-insets : 5.0 5.0 5.0 5.0;
+    -fx-padding : 30pt; /* margin around the grid */
+    -fx-spacing : 5pt;  /* spaces between child nodes */
+    -fx-alignment : center; /* Alignment of the child nodes within the grid. */
+}
+
+.grid2 {
+    /* -fx-background-color : #fff2cc; */
+    -fx-background-image : url("crumpled-paper-texture.jpg");
+
+    /* The following rules are meant for background images.
+       Commented out since I don't need it for the current rule.
+       Placed here for reference. I might need them for some other rules.
+ 
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+    */
+
     -fx-background-radius : 5.0;
     -fx-background-insets : 5.0 5.0 5.0 5.0;
     -fx-padding : 30pt; /* margin around the grid */
@@ -38,7 +70,7 @@
     -fx-spacing : 10pt
 }
 
-.h1 {
+.h1 { /* Should act similarly to HTML's H1 tag. */
     -fx-font-size : 17pt;
     -fx-fill : #fff9e6;   /* This would be the font color. No joking. */
     -fx-text-alignment : center;
@@ -46,12 +78,14 @@
     -fx-padding : 15pt;
 }
 
-.h2 {
+
+.h2 { /* Ditto with HTML H2. */
     -fx-font-size : 14pt;
     -fx-fill : #1a0008;
     -fx-text-alignment : center;
     -fx-font-weight : bold;
 }
+
 
 .output-area {
     -fx-fill : #8b008b;

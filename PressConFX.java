@@ -31,6 +31,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import javafx.geometry.*;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.Menu;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.control.MenuItem;
+
+
+
 
 public class PressConFX extends Application {
     public static void main(String[] args) {
@@ -39,10 +46,32 @@ public class PressConFX extends Application {
 
     @Override public void start(Stage primaryStage) {
         primaryStage.setTitle("Private Schools Press Conference");
-        VBox topLayout = new VBox();
-        Scene menuScene = new Scene(topLayout);
+        BorderPane sceneroot = new BorderPane();
+        Scene menuScene = new Scene(sceneroot);
+
         menuScene.getStylesheets().add("default.css");
+
+        VBox topLayout = new VBox();
+        sceneroot.setCenter(topLayout);
         topLayout.getStyleClass().add("grid");
+
+
+        /* Create a MenuBar and populate with Menus
+           ----------------------------------------------- */
+
+        Menu menu1 = new Menu("File");
+
+        Menu menu2 = new Menu("Database");
+            MenuItem menu21 = new MenuItem("Initialize");
+            MenuItem menu22 = new MenuItem("Edit/Add Data");
+            menu2.getItems().addAll(menu21, menu22);
+
+        Menu menu3 = new Menu("Settings");
+
+        MenuBar menubar = new MenuBar();
+        menubar.getMenus().addAll(menu1, menu2, menu3);
+        menubar.setVisible(true);
+        sceneroot.setTop(menubar);
 
         primaryStage.setScene(menuScene);
         Text bannerText = new Text("Private Schools\nPress Conference\nMain Menu\n");
@@ -67,7 +96,36 @@ public class PressConFX extends Application {
            lastViewedButton, quitButton);
 
 
-        /* THE EVENT HANDLERS FOR THE VARIOUS BUTTONS */
+        /* THE EVENT HANDLERS FOR THE VARIOUS BUTTONS
+           ------------------------------------------
+           Note that setOnAction() requires an EventHandler be passed
+           as a parameter. In the following cases, the Eventhandler object
+           is an anonymous class. The class is defined in the body of
+           the parameter passed to setOnAction. */
+
+
+        /* For the Pen Names.
+           ------------------------------------------*/
+
+        penNamesButton.setOnAction(
+            new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+                Pen_Names.Entry_Screen(primaryStage);
+                }
+            }
+        );
+
+
+        /* For the winners.
+           ------------------------------------------*/
+
+        winnersButton.setOnAction(
+            new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+                Winners.Winners_Entry(primaryStage);
+                }
+            }
+        );
 
         quitButton.setOnAction(
             new EventHandler<ActionEvent>() {
