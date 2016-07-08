@@ -127,6 +127,21 @@ public class PressConFX extends Application {
             }
         );
 
+
+        /* For the winners report.
+           ------------------------------------------*/
+
+        winnersReportButton.setOnAction(
+            new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+                Winners.Winners_Report(primaryStage);
+                }
+            }
+        );
+
+
+
+
         quitButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
