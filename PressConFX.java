@@ -110,7 +110,7 @@ public class PressConFX extends Application {
         penNamesButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                Pen_Names.Entry_Screen(primaryStage);
+                PCDialogs.Pen_Names_Entry(primaryStage);
                 }
             }
         );
@@ -122,7 +122,7 @@ public class PressConFX extends Application {
         winnersButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                Winners.Winners_Entry(primaryStage);
+                PCDialogs.Winners_Entry(primaryStage);
                 }
             }
         );
@@ -134,7 +134,32 @@ public class PressConFX extends Application {
         winnersReportButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                Winners.Winners_Report(primaryStage);
+                PCDialogs.Winners_Report(primaryStage);
+                }
+            }
+        );
+
+
+
+        /* For the school winners report.
+           ------------------------------------------*/
+
+        schoolsReportButton.setOnAction(
+            new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+                PCDialogs.School_Winners_Report(primaryStage);
+                }
+            }
+        );
+
+
+        /* Prepare the Rankings
+           ------------------------------------------*/
+
+        rankingsButton.setOnAction(
+            new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+                PCDialogs.Rankings_Report(primaryStage);
                 }
             }
         );
