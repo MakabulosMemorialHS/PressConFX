@@ -9,6 +9,8 @@
  *
  *
  * *****************************************************************/
+package ph.mmhsvictoria.apps.pressconfx;
+
 import java.lang.*;
 import java.util.*;
 import javafx.stage.Stage;
@@ -61,7 +63,7 @@ public class PCDialogs {
         // We load the CSS file and apply a rule from that CSS to
         // the scene graph we have here.
 
-        topScene.getStylesheets().add("default.css");
+        topScene.getStylesheets().add("css/default.css");   // The path is relative to the classpath.
         topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
@@ -192,7 +194,7 @@ public class PCDialogs {
         // We load the CSS file and apply a rule from that CSS to
         // the scene graph we have here.
 
-        topScene.getStylesheets().add("default.css");
+        topScene.getStylesheets().add("css/default.css");
         topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
@@ -286,7 +288,7 @@ public class PCDialogs {
         VBox topLayout = new VBox();
         Scene topScene = new Scene(topLayout);
 
-        topScene.getStylesheets().add("default.css");
+        topScene.getStylesheets().add("css/default.css");
         topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
@@ -354,7 +356,7 @@ public class PCDialogs {
         VBox topLayout = new VBox();
         Scene topScene = new Scene(topLayout);
 
-        topScene.getStylesheets().add("default.css");
+        topScene.getStylesheets().add("css/default.css");
         topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
@@ -425,7 +427,7 @@ public class PCDialogs {
         VBox topLayout = new VBox();
         Scene topScene = new Scene(topLayout);
 
-        topScene.getStylesheets().add("default.css");
+        topScene.getStylesheets().add("css/default.css");
         topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************

@@ -15,6 +15,8 @@
  * $Log$
  *
  * ***********************************************************************************/
+package ph.mmhsvictoria.apps.pressconfx;
+
 import java.lang.*;
 import java.util.*;
 import javafx.application.Application;
@@ -49,7 +51,7 @@ public class PressConFX extends Application {
         BorderPane sceneroot = new BorderPane();
         Scene menuScene = new Scene(sceneroot);
 
-        menuScene.getStylesheets().add("default.css");
+        menuScene.getStylesheets().add("css/default.css");
 
         VBox topLayout = new VBox();
         sceneroot.setCenter(topLayout);

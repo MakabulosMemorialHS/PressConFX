@@ -6,6 +6,8 @@
  * Robert Pascual
  *
  * *******************************************************/
+package ph.mmhsvictoria.apps.pressconfx;
+
 import java.lang.*;
 import java.util.*;
 import javafx.stage.Stage;

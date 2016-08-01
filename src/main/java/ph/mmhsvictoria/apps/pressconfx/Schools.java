@@ -1,11 +1,13 @@
 /* *****************************************************************
- * Winners.java
+ * Schools.java
  *
- * Dialog for entry of new winners in the various categories..
+ * Module for the Schools Database object.
  *
  * Robert Pascual
  *
  * *****************************************************************/
+package ph.mmhsvictoria.apps.pressconfx;
+
 import java.lang.*;
 import java.util.*;
 import javafx.stage.Stage;
@@ -24,7 +26,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.ToggleGroup;
 
-public class Winners {
+public class Schools {
 
     public static final double HBOX_SPACING   = 8.0;
     public static final double VBOX_SPACING   = 8.0;
