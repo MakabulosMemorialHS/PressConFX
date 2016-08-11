@@ -1,5 +1,11 @@
 # PressConFX
 
+NOTICE:
+All work on this project has been moved to the 'gradle' branch. If you
+want to see the latest work in progress, please checkout that branch.
+
+All work on branch master is currently frozen.
+
 Note: This is currently a work in progress. It should be ready by
 the time the Private Schools Press Conference cycle for this School Year
 begins.
