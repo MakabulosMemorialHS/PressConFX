@@ -1,2 +1,13 @@
 apply plugin: 'java'
 
+task runPressConFX(type: Exec) {
+    workingDir './'
+    executable '/usr/local/java/bin/java'
+    args '-cp', 'build/classes/main:build/resources/main', 'ph.mmhsvictoria.apps.pressconfx.PressConFX'
+}
+
+task listFiles(type: Exec) {
+    commandLine = ['/bin/ls', '-l']
+}
+
+
