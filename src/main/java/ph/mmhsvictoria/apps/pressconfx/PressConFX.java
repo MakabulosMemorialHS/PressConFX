@@ -37,6 +37,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.StackPane;
 
 
 
@@ -48,8 +49,10 @@ public class PressConFX extends Application {
 
     @Override public void start(Stage primaryStage) {
         primaryStage.setTitle("Private Schools Press Conference");
+        StackPane pane0 = new StackPane();
         BorderPane sceneroot = new BorderPane();
-        Scene menuScene = new Scene(sceneroot);
+        pane0.getChildren().add(sceneroot);
+        Scene menuScene = new Scene(pane0);
 
         menuScene.getStylesheets().add("css/default.css");
 
@@ -112,7 +115,7 @@ public class PressConFX extends Application {
         penNamesButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.Pen_Names_Entry(primaryStage);
+                PCDialogs.Pen_Names_Entry(pane0);
                 }
             }
         );
@@ -124,7 +127,7 @@ public class PressConFX extends Application {
         winnersButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.Winners_Entry(primaryStage);
+                PCDialogs.Winners_Entry(pane0);
                 }
             }
         );
@@ -136,7 +139,7 @@ public class PressConFX extends Application {
         winnersReportButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.Winners_Report(primaryStage);
+                PCDialogs.Winners_Report(pane0);
                 }
             }
         );
@@ -149,7 +152,7 @@ public class PressConFX extends Application {
         schoolsReportButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.School_Winners_Report(primaryStage);
+                PCDialogs.School_Winners_Report(pane0);
                 }
             }
         );
@@ -161,7 +164,7 @@ public class PressConFX extends Application {
         rankingsButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.Rankings_Report(primaryStage);
+                PCDialogs.Rankings_Report(pane0);
                 }
             }
         );

@@ -28,6 +28,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.StackPane;
 
 public class PCDialogs {
 
@@ -41,9 +42,7 @@ public class PCDialogs {
      * javafx.Stage.Window object which we want to own this pen names Stage.
      * ***********************************************************************/
     
-    public static void Pen_Names_Entry(Window owner) {
-        Stage pen_names_stage = new Stage();
-        pen_names_stage.setTitle("Enter Student Details");
+    public static void Pen_Names_Entry(StackPane sp) {
 
         /* ************************************************************
          * Note the style that I am using.
@@ -56,14 +55,13 @@ public class PCDialogs {
         // The root of our scene graph shall be a VBox layout
 
         VBox topLayout = new VBox();
-        Scene topScene = new Scene(topLayout);
-
+        sp.getChildren().add(topLayout);
 
         // The style for the scene graph is indicated in a CSS file.
         // We load the CSS file and apply a rule from that CSS to
         // the scene graph we have here.
 
-        topScene.getStylesheets().add("css/default.css");   // The path is relative to the classpath.
+        // topScene.getStylesheets().add("css/default.css");   // The path is relative to the classpath.
         topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
@@ -157,9 +155,9 @@ public class PCDialogs {
 
 
 
-        pen_names_stage.setScene(topScene);
-        pen_names_stage.initOwner(owner);
-        pen_names_stage.show();
+        // pen_names_stage.setScene(topScene);
+        // pen_names_stage.initOwner(owner);
+        // pen_names_stage.show();
     }
 
 
@@ -168,12 +166,12 @@ public class PCDialogs {
      * contest.
      * ****************************************************************/
 
-    public static void Winners_Entry(Window owner) {
+    public static void Winners_Entry(StackPane sp) {
 
         // First we prep the Stage.
 
-        Stage winners_stage = new Stage();
-        winners_stage.setTitle("Enter Contest Winners");
+        // Stage winners_stage = new Stage();
+        // winners_stage.setTitle("Enter Contest Winners");
 
         /* ************************************************************
          * Note the style that I am using.
@@ -187,15 +185,17 @@ public class PCDialogs {
         // The root of our scene graph shall be a VBox layout
 
         VBox topLayout = new VBox();
-        Scene topScene = new Scene(topLayout);
+        sp.getChildren().add(topLayout);
+
+        // Scene topScene = new Scene(topLayout);
 
 
         // The style for the scene graph is indicated in a CSS file.
         // We load the CSS file and apply a rule from that CSS to
         // the scene graph we have here.
 
-        topScene.getStylesheets().add("css/default.css");
-        topLayout.getStyleClass().add("grid2");
+        // topScene.getStylesheets().add("css/default.css");
+        // topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
          * Now successively add elements to the Dialog.
@@ -271,9 +271,9 @@ public class PCDialogs {
 
 
 
-        winners_stage.setScene(topScene);
-        winners_stage.initOwner(owner);
-        winners_stage.show();
+        // winners_stage.setScene(topScene);
+        // winners_stage.initOwner(owner);
+        // winners_stage.show();
     }
 
 
@@ -281,15 +281,16 @@ public class PCDialogs {
        Prepare the Winners Report
        ============================================================= */
 
-    public static void Winners_Report(Window owner) {
+    public static void Winners_Report(StackPane sp) {
 
-        Stage report_stage = new Stage();
-        report_stage.setTitle("Contest Winners Report\n");
+        // Stage report_stage = new Stage();
+        // report_stage.setTitle("Contest Winners Report\n");
         VBox topLayout = new VBox();
-        Scene topScene = new Scene(topLayout);
+        sp.getChildren().add(topLayout);
+        // Scene topScene = new Scene(topLayout);
 
-        topScene.getStylesheets().add("css/default.css");
-        topLayout.getStyleClass().add("grid2");
+        // topScene.getStylesheets().add("css/default.css");
+        // topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
          * Now successively add elements to the Dialog.
@@ -340,24 +341,25 @@ public class PCDialogs {
         cancel_ok_hbox.getChildren().addAll(cancel_button, ok_button);
         topLayout.getChildren().add(cancel_ok_hbox);
 
-        report_stage.setScene(topScene);
-        report_stage.initOwner(owner);
-        report_stage.show();
+        // report_stage.setScene(topScene);
+        // report_stage.initOwner(owner);
+        // report_stage.show();
     }
 
     /* =============================================================
        Prepare the Report Listing The Winners of A Particular School
        ============================================================= */
 
-    public static void School_Winners_Report(Window owner) {
+    public static void School_Winners_Report(StackPane sp) {
 
-        Stage report_stage = new Stage();
-        report_stage.setTitle("School Winners Report\n");
+        // Stage report_stage = new Stage();
+        // report_stage.setTitle("School Winners Report\n");
         VBox topLayout = new VBox();
-        Scene topScene = new Scene(topLayout);
+        sp.getChildren().add(topLayout);
+        // Scene topScene = new Scene(topLayout);
 
-        topScene.getStylesheets().add("css/default.css");
-        topLayout.getStyleClass().add("grid2");
+        // topScene.getStylesheets().add("css/default.css");
+        // topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
          * Now successively add elements to the Dialog.
@@ -408,9 +410,9 @@ public class PCDialogs {
         cancel_ok_hbox.getChildren().addAll(cancel_button, ok_button);
         topLayout.getChildren().add(cancel_ok_hbox);
 
-        report_stage.setScene(topScene);
-        report_stage.initOwner(owner);
-        report_stage.show();
+        // report_stage.setScene(topScene);
+        // report_stage.initOwner(owner);
+        // report_stage.show();
     }
 
 
@@ -420,15 +422,16 @@ public class PCDialogs {
        won contests ranked by points earned.
        ============================================================= */
 
-    public static void Rankings_Report(Window owner) {
+    public static void Rankings_Report(StackPane sp) {
 
-        Stage report_stage = new Stage();
-        report_stage.setTitle("Report of Schools By Rank\n");
+        // Stage report_stage = new Stage();
+        // report_stage.setTitle("Report of Schools By Rank\n");
         VBox topLayout = new VBox();
-        Scene topScene = new Scene(topLayout);
+        sp.getChildren().add(topLayout);
+        // Scene topScene = new Scene(topLayout);
 
-        topScene.getStylesheets().add("css/default.css");
-        topLayout.getStyleClass().add("grid2");
+        // topScene.getStylesheets().add("css/default.css");
+        // topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
          * Now successively add elements to the Dialog.
@@ -485,9 +488,9 @@ public class PCDialogs {
         cancel_ok_hbox.getChildren().addAll(cancel_button, ok_button);
         topLayout.getChildren().add(cancel_ok_hbox);
 
-        report_stage.setScene(topScene);
-        report_stage.initOwner(owner);
-        report_stage.show();
+        // report_stage.setScene(topScene);
+        // report_stage.initOwner(owner);
+        // report_stage.show();
     }
 
 

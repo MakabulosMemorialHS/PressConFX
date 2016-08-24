@@ -25,7 +25,7 @@
 
 .grid {
     /* -fx-background-color : #fff2cc; */
-    -fx-background-image : url("newspaper-texture.jpg");
+    -fx-background-image : url("dark-blue-background-portrait.jpg");
 
     /* The following rules are meant for background images.
        Commented out since I don't need it for the current rule.
@@ -46,7 +46,7 @@
 
 .grid2 {
     /* -fx-background-color : #fff2cc; */
-    -fx-background-image : url("crumpled-paper-texture.jpg");
+    -fx-background-image : url("dark-blue-background-portrait.jpg");
 
     /* The following rules are meant for background images.
        Commented out since I don't need it for the current rule.
@@ -58,6 +58,7 @@
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
     */
 
+    -fx-fill : #fff9e6;   /* This would be the font color. No joking. */
     -fx-background-radius : 5.0;
     -fx-background-insets : 5.0 5.0 5.0 5.0;
     -fx-padding : 30pt; /* margin around the grid */
@@ -74,7 +75,7 @@
     -fx-font-size : 17pt;
     -fx-fill : #fff9e6;   /* This would be the font color. No joking. */
     -fx-text-alignment : center;
-    -fx-font-weight : bold;
+    -fx-font-weight : normal;
     -fx-padding : 15pt;
 }
 
@@ -83,7 +84,7 @@
     -fx-font-size : 14pt;
     -fx-fill : #1a0008;
     -fx-text-alignment : center;
-    -fx-font-weight : bold;
+    -fx-font-weight : normal;
 }
 
 

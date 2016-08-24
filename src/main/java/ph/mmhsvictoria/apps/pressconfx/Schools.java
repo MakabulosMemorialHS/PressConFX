@@ -57,6 +57,7 @@ public class Schools {
         // The root of our scene graph shall be a VBox layout
 
         VBox topLayout = new VBox();
+        
         Scene topScene = new Scene(topLayout);
 
 

@@ -1,5 +1,11 @@
 apply plugin: 'java'
 
+task gitcommit << {
+    String command = 'git commit -a'
+    command.execute()
+}
+
+
 task runPressConFX(type: Exec) {
     workingDir './'
     executable '/usr/local/java/bin/java'

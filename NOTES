@@ -1,0 +1,9 @@
+PROGRESS NOTES.
+
+July 2016
+----------------------------------------------------------------------
+--- Work on using the gradle build language for this project started.
+    A new branch called 'gradle' was opened and this branch will receive
+    all of the new updates. Branch master is currently frozen.
+
+
