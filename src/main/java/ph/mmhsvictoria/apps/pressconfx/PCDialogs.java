@@ -29,6 +29,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class PCDialogs {
 
@@ -42,7 +46,7 @@ public class PCDialogs {
      * javafx.Stage.Window object which we want to own this pen names Stage.
      * ***********************************************************************/
     
-    public static void Pen_Names_Entry(StackPane sp) {
+    public static void Pen_Names_Entry(BorderPane sp) {
 
         /* ************************************************************
          * Note the style that I am using.
@@ -55,13 +59,12 @@ public class PCDialogs {
         // The root of our scene graph shall be a VBox layout
 
         VBox topLayout = new VBox();
-        sp.getChildren().add(topLayout);
+        sp.setCenter(topLayout);
 
         // The style for the scene graph is indicated in a CSS file.
         // We load the CSS file and apply a rule from that CSS to
         // the scene graph we have here.
 
-        // topScene.getStylesheets().add("css/default.css");   // The path is relative to the classpath.
         topLayout.getStyleClass().add("grid2");
 
         /* *****************************************************************
@@ -72,71 +75,61 @@ public class PCDialogs {
 
         Text pnlabel = new Text("Enter Student Details");
         pnlabel.getStyleClass().add("h1");
-        topLayout.getChildren().add(pnlabel);
+        sp.setTop(pnlabel);
 
         // The CHOICE BOX FOR THE SCHOOL NAME
 
         HBox school_hbox = new HBox(Pen_Names.HBOX_SPACING);
         Text school_label = new Text("School");
         school_label.setWrappingWidth(Pen_Names.WRAPPING_WIDTH);
-        school_label.setTextAlignment(TextAlignment.RIGHT);
+        school_label.setTextAlignment(TextAlignment.LEFT);
 
         ChoiceBox<String> schools = new ChoiceBox<String>();
 
-        school_hbox.getChildren().addAll(school_label, schools);
-        topLayout.getChildren().add(school_hbox);
+        topLayout.getChildren().addAll(school_label, schools);
 
 
         // The student's PEN NAME or ID CODE.
 
-        HBox pen_name_hbox = new HBox(Pen_Names.HBOX_SPACING);
         Text pen_name_label = new Text("Pen Name");
         pen_name_label.setWrappingWidth(Pen_Names.WRAPPING_WIDTH);
-        pen_name_label.setTextAlignment(TextAlignment.RIGHT);
+        pen_name_label.setTextAlignment(TextAlignment.LEFT);
 
         TextField pen_name_field = new TextField("");
 
-        pen_name_hbox.getChildren().addAll(pen_name_label, pen_name_field);
-        topLayout.getChildren().add(pen_name_hbox);
-
+        topLayout.getChildren().addAll(pen_name_label, pen_name_field);
 
         // Student's LAST NAME
 
-        HBox last_name_hbox = new HBox(Pen_Names.HBOX_SPACING);
         Text last_name_label = new Text("Last Name");
         last_name_label.setWrappingWidth(Pen_Names.WRAPPING_WIDTH);
-        last_name_label.setTextAlignment(TextAlignment.RIGHT);
+        last_name_label.setTextAlignment(TextAlignment.LEFT);
 
         TextField last_name_field = new TextField();
 
-        last_name_hbox.getChildren().addAll(last_name_label, last_name_field);
-        topLayout.getChildren().add(last_name_hbox);
+        topLayout.getChildren().addAll(last_name_label, last_name_field);
 
 
         // Student's FIRST NAME
 
-        HBox first_name_hbox = new HBox(Pen_Names.HBOX_SPACING);
         Text first_name_label = new Text("First Name");
         first_name_label.setWrappingWidth(Pen_Names.WRAPPING_WIDTH);
-        first_name_label.setTextAlignment(TextAlignment.RIGHT);
+        first_name_label.setTextAlignment(TextAlignment.LEFT);
 
         TextField first_name_field = new TextField();
 
-        first_name_hbox.getChildren().addAll(first_name_label, first_name_field);
-        topLayout.getChildren().add(first_name_hbox);
+        topLayout.getChildren().addAll(first_name_label, first_name_field);
 
 
         // Student's MIDDLE NAME
 
-        HBox middle_name_hbox = new HBox(Pen_Names.HBOX_SPACING);
         Text middle_name_label = new Text("Middle Name");
         middle_name_label.setWrappingWidth(Pen_Names.WRAPPING_WIDTH);
-        middle_name_label.setTextAlignment(TextAlignment.RIGHT);
+        middle_name_label.setTextAlignment(TextAlignment.LEFT);
 
         TextField middle_name_field = new TextField();
 
-        middle_name_hbox.getChildren().addAll(middle_name_label, middle_name_field);
-        topLayout.getChildren().add(middle_name_hbox);
+        topLayout.getChildren().addAll(middle_name_label, middle_name_field);
 
 
         // The CANCEL and OK Button.
@@ -153,7 +146,13 @@ public class PCDialogs {
         cancel_ok_hbox.getChildren().addAll(cancel_button, ok_button);
         topLayout.getChildren().add(cancel_ok_hbox);
 
-
+        cancel_button.setOnAction(
+            new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+                ;
+                }
+            }
+        );
 
         // pen_names_stage.setScene(topScene);
         // pen_names_stage.initOwner(owner);

@@ -2,7 +2,8 @@
  * PressConFX.java
  *
  * Main application for the Private Schools Press Conference
- * Management Software.
+ * Management Software. This application was modified so that it is
+ * compatible with use on a tablet or smartphone.
  *
  * (c) Robert Pascual 2016
  * rtonypascual@gmail.com
@@ -38,7 +39,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
-
+import javafx.stage.Screen;
 
 
 
@@ -48,40 +49,39 @@ public class PressConFX extends Application {
     }
 
     @Override public void start(Stage primaryStage) {
-        primaryStage.setTitle("Private Schools Press Conference");
-        StackPane pane0 = new StackPane();
-        BorderPane sceneroot = new BorderPane();
-        pane0.getChildren().add(sceneroot);
-        Scene menuScene = new Scene(pane0);
 
-        menuScene.getStylesheets().add("css/default.css");
+        /* Determine size of the screen. Could be tablet, smartphone, or
+           LCD monitor. */
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double stageHeight = bounds.getHeight();
+        double stageWidth = bounds.getWidth();
+
+        /* Create the Node for the scene. And style it. */
+        StackPane pane0 = new StackPane();
+        Scene scene = new Scene(pane0, stageWidth, stageHeight);
+        scene.getStylesheets().add("css/default.css");
+
+        /* Set scene on stage. */
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Private Schools Press Conference");
+
+
+        /* Great! Now we put things on the scene. */
+        
+        BorderPane bp1 = new BorderPane();
+        pane0.getChildren().add(bp1);
+        bp1.getStyleClass().add("grid");
 
         VBox topLayout = new VBox();
-        sceneroot.setCenter(topLayout);
+        bp1.setCenter(topLayout);
         topLayout.getStyleClass().add("grid");
 
-
-        /* Create a MenuBar and populate with Menus
-           ----------------------------------------------- */
-
-        Menu menu1 = new Menu("File");
-
-        Menu menu2 = new Menu("Database");
-            MenuItem menu21 = new MenuItem("Initialize");
-            MenuItem menu22 = new MenuItem("Edit/Add Data");
-            menu2.getItems().addAll(menu21, menu22);
-
-        Menu menu3 = new Menu("Settings");
-
-        MenuBar menubar = new MenuBar();
-        menubar.getMenus().addAll(menu1, menu2, menu3);
-        menubar.setVisible(true);
-        sceneroot.setTop(menubar);
-
-        primaryStage.setScene(menuScene);
         Text bannerText = new Text("Private Schools\nPress Conference\nMain Menu\n");
         bannerText.getStyleClass().add("h1");
-        topLayout.getChildren().add(bannerText);
+        VBox vbt = new VBox();
+        vbt.getChildren().add(bannerText);
+        bp1.setTop(vbt);
+
 
         /* NOW ADD THE BUTTONS. Quiz: What is the equiv name in Qt? */ 
 
@@ -110,12 +110,14 @@ public class PressConFX extends Application {
 
 
         /* For the Pen Names.
-           ------------------------------------------*/
+           ---------------------------------*/
 
         penNamesButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.Pen_Names_Entry(pane0);
+                    BorderPane pane1 = new BorderPane();
+                    pane0.getChildren().add(pane1);
+                    PCDialogs.Pen_Names_Entry(pane1);
                 }
             }
         );
