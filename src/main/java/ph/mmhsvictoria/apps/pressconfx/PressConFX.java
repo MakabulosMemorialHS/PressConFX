@@ -44,6 +44,12 @@ import javafx.stage.Screen;
 
 
 public class PressConFX extends Application {
+
+    /* Properties of this Application. */
+
+    double stageHeight;
+    double stageWidth;
+
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -53,8 +59,8 @@ public class PressConFX extends Application {
         /* Determine size of the screen. Could be tablet, smartphone, or
            LCD monitor. */
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double stageHeight = bounds.getHeight();
-        double stageWidth = bounds.getWidth();
+        stageHeight = bounds.getHeight();
+        stageWidth = bounds.getWidth();
 
         /* Create the Node for the scene. And style it. */
         StackPane pane0 = new StackPane();
@@ -75,7 +81,6 @@ public class PressConFX extends Application {
         VBox topLayout = new VBox();
         bp1.setCenter(topLayout);
         topLayout.getStyleClass().add("grid");
-
         Text bannerText = new Text("Private Schools\nPress Conference\nMain Menu\n");
         bannerText.getStyleClass().add("h1");
         VBox vbt = new VBox();
@@ -115,9 +120,8 @@ public class PressConFX extends Application {
         penNamesButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                    BorderPane pane1 = new BorderPane();
-                    pane0.getChildren().add(pane1);
-                    PCDialogs.Pen_Names_Entry(pane1);
+                    DialogScenes.Pen_Names_Entry(primaryStage);
+                    primaryStage.setScene(scene);
                 }
             }
         );
