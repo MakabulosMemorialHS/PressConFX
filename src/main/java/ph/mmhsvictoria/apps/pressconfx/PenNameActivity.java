@@ -63,7 +63,7 @@ public class PenNameActivity {
         topLayout.setAlignment(Pos.BOTTOM_LEFT);
         Scene scene = new Scene(topLayout);
         scene.getStylesheets().add("css/default.css");
-        topLayout.getStyleClass().add("grid2");
+        topLayout.getStyleClass().add("activity-windows");
         stage.setScene(scene);
 
 

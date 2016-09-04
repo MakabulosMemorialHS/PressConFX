@@ -88,14 +88,18 @@ public class PressConFX extends Application {
         
         BorderPane bp1 = new BorderPane();
         pane0.getChildren().add(bp1);
-        bp1.getStyleClass().add("grid");
+        bp1.getStyleClass().add("main-screen");
 
         VBox topLayout = new VBox();
         bp1.setCenter(topLayout);
-        topLayout.getStyleClass().add("grid");
+        topLayout.getStyleClass().add("main-screen");
+        topLayout.setFillWidth(true);
+
         Text bannerText = new Text("Private Schools\nPress Conference\nMain Menu\n");
         bannerText.getStyleClass().add("h1");
+
         VBox vbt = new VBox();
+        vbt.getStyleClass().add("top-bottom-panels");
         vbt.getChildren().add(bannerText);
         bp1.setTop(vbt);
 
@@ -110,6 +114,23 @@ public class PressConFX extends Application {
         Button rankingsButton         = new Button("Prepare Rankings");
         Button lastViewedButton       = new Button("Print Last Viewed Report");
         Button quitButton             = new Button("Quit");
+
+        /* Set the MaxWidth of the Buttons so that they will be
+           resized by the containing VBox.
+           If the Buttons appear not to have the same size then
+           check if the containing VBox has setFillWidth = true.
+           ie: VBox.setFillWidth(true) */
+        
+        penNamesButton.setMaxWidth(300);
+        winnersButton.setMaxWidth(300);
+        commitButton.setMaxWidth(300);
+        winnersReportButton.setMaxWidth(300);
+        schoolsReportButton.setMaxWidth(300);
+        rankingsButton.setMaxWidth(300);
+        lastViewedButton.setMaxWidth(300);
+        quitButton.setMaxWidth(300);
+
+        quitButton.setCancelButton(true);
 
         topLayout.getChildren().addAll(
            penNamesButton, winnersButton,
