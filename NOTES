@@ -1,5 +1,26 @@
 PROGRESS NOTES.
 
+4 Sept 2016
+----------------------------------------------------------------------
+--- Refactored the branches of this repository. Branch gradle merged
+    with master. Branch master now contains
+    the latest changes while branch gradle is due for deletion.
+    Do not use branch gradle anymore.
+
+--- Attempted to refactor the source code so it appears like an Android
+    application. ie, choosing a menu item should make the new Activity
+    overwrite the window of the calling window. Didn't quite work.
+
+    However, it turns out that Android design guidelines specifically
+    advises that an application be divided into cooperating activities.
+    That means the old style used for PressConFX is the recommended 
+    style. ie: Each selection of a menu item should call up an independent
+    activity re Android Guidelines.
+
+    Hence: For this application, selecting a menu item should call up
+    a different Stage. I have resorted to calling the Stages as Activities
+    in order to reflect the Android paradigm.
+
 July 2016
 ----------------------------------------------------------------------
 --- Work on using the gradle build language for this project started.
