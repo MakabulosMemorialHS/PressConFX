@@ -53,7 +53,7 @@ public class DialogScenes {
 
         VBox topLayout = new VBox();
         BorderPane sp = new BorderPane();
-        Scene pnscene = new Scene(sp,width,height);
+        Scene pnscene = new Scene(topLayout);
         sp.setCenter(topLayout);
 
         // The style for the scene graph is indicated in a CSS file.

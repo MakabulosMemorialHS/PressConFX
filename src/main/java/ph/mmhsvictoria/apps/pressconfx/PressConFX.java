@@ -54,20 +54,32 @@ public class PressConFX extends Application {
         Application.launch(args);
     }
 
+
+    /* ************************************************************************
+     * The start() method creates the main screen. We design this program so
+     * that it looks like a mobile application. Then, it would be easy to
+     * port it to android.
+     * ************************************************************************/
+     
     @Override public void start(Stage primaryStage) {
 
         /* Determine size of the screen. Could be tablet, smartphone, or
            LCD monitor. */
+
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         stageHeight = bounds.getHeight();
         stageWidth = bounds.getWidth();
 
+
         /* Create the Node for the scene. And style it. */
+
         StackPane pane0 = new StackPane();
         Scene scene = new Scene(pane0, stageWidth, stageHeight);
         scene.getStylesheets().add("css/default.css");
 
+
         /* Set scene on stage. */
+
         primaryStage.setScene(scene);
         primaryStage.setTitle("Private Schools Press Conference");
 
@@ -120,8 +132,7 @@ public class PressConFX extends Application {
         penNamesButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                    DialogScenes.Pen_Names_Entry(primaryStage);
-                    primaryStage.setScene(scene);
+                    PenNameActivity.show(primaryStage);
                 }
             }
         );
