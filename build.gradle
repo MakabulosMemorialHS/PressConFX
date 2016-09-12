@@ -1,19 +1,9 @@
 apply plugin: 'java'
 
-task gitcommit << {
-    String command = 'git commit -a'
-    command.execute()
-}
-
-
-task runPressConFX(type: Exec) {
-    workingDir './'
-    executable '/usr/local/java/bin/java'
-    args '-cp', 'build/classes/main:build/resources/main', 'ph.mmhsvictoria.apps.pressconfx.PressConFX'
-}
-
-task listFiles(type: Exec) {
-    commandLine = ['/bin/ls', '-l']
+task runapp << {
+    String cmd = 'java -cp build/classes/main:src/main/resources ph.mmhsvictoria.apps.pressconfx.PressConFX'
+  
+    cmd.execute()
 }
 
 
