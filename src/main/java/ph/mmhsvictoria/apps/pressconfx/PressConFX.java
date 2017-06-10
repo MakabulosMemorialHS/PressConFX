@@ -75,7 +75,7 @@ public class PressConFX extends Application {
 
         StackPane pane0 = new StackPane();
         Scene scene = new Scene(pane0, stageWidth, stageHeight);
-        scene.getStylesheets().add("css/default.css");
+        scene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
 
 
         /* Set scene on stage. */
