@@ -22,23 +22,14 @@ import java.lang.*;
 import java.util.*;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.event.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import javafx.geometry.*;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.Menu;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 
 
@@ -49,40 +40,21 @@ public class PressConFX extends Application {
 
     double stageHeight;
     double stageWidth;
+    Scene mainMenuScene;
+    Scene winnersEntryScene;
+    Stage rootStage;
 
     public static void main(String[] args) {
         Application.launch(args);
     }
 
 
-    /* ************************************************************************
-     * The start() method creates the main screen. We design this program so
-     * that it looks like a mobile application. Then, it would be easy to
-     * port it to android.
-     * ************************************************************************/
-     
-    @Override public void start(Stage primaryStage) {
-
-        /* Determine size of the screen. Could be tablet, smartphone, or
-           LCD monitor. */
-
-        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        stageHeight = bounds.getHeight();
-        stageWidth = bounds.getWidth();
-
-
-        /* Create the Node for the scene. And style it. */
+    private void initMainMenu() {
+        /* Create the Node for the mainMenuScene. And style it. */
 
         StackPane pane0 = new StackPane();
-        Scene scene = new Scene(pane0, stageWidth, stageHeight);
-        scene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
-
-
-        /* Set scene on stage. */
-
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Private Schools Press Conference");
-
+        mainMenuScene = new Scene(pane0, stageWidth, stageHeight);
+        mainMenuScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
 
         /* Great! Now we put things on the scene. */
         
@@ -153,7 +125,7 @@ public class PressConFX extends Application {
         penNamesButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                    PenNameActivity.show(primaryStage);
+                    PenNameActivity.show(rootStage);    // Change the implementation of this function.
                 }
             }
         );
@@ -165,7 +137,7 @@ public class PressConFX extends Application {
         winnersButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.Winners_Entry(pane0);
+                rootStage.setScene(winnersEntryScene);
                 }
             }
         );
@@ -181,7 +153,6 @@ public class PressConFX extends Application {
                 }
             }
         );
-
 
 
         /* For the school winners report.
@@ -207,9 +178,6 @@ public class PressConFX extends Application {
             }
         );
 
-
-
-
         quitButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
@@ -219,7 +187,151 @@ public class PressConFX extends Application {
         );
 
 
-        primaryStage.show();
+    }
+
+
+
+    private void initWinnersEntry() {
+        /* ************************************************************
+         * Note the style that I am using.
+         * For each window or main dialog, my standard names are
+         *
+         * (a) topLayout for the root of the scene graph attached to the stage.
+         * (b) topScene for the scene set on the layout.
+         * ************************************************************/
+        
+        // We prep a Scene Graph.
+        // The root of our scene graph shall be a VBox layout
+
+        BorderPane bp = new BorderPane();
+        winnersEntryScene = new Scene(bp,stageWidth,stageHeight);
+
+
+        // The style for the scene graph is indicated in a CSS file.
+        // We load the CSS file and apply a rule from that CSS to
+        // the scene graph we have here.
+
+        //  winnersEntryScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
+        // topLayout.getStyleClass().add("grid2");
+
+        /* *****************************************************************
+         * Now successively add elements to the Dialog.
+         * ****************************************************************/
+
+        // The Banner Title goes to the Top Panel of BorderPane bp
+
+        VBox topLayout = new VBox();
+        bp.setTop(topLayout);
+
+        Text pnlabel = new Text("Enter Contest Winners");
+        // pnlabel.getStyleClass().add("h1");
+        topLayout.getChildren().add(pnlabel);
+
+        GridPane topGp = new GridPane();
+        topLayout.getChildren().add(topGp);
+       
+        // The Button and TextField for the CONTEST CODE.
+
+        // HBox category_hbox = new HBox(Winners.HBOX_SPACING);
+        ChoiceBox<String> contest_names = new ChoiceBox<String>();
+        TextField contest_code = new TextField("");
+
+        // category_hbox.getChildren().addAll(contest_names, contest_code);
+       
+        topGp.add(contest_code,0,0);
+        topGp.add(contest_names,1,0);
+
+        /*
+        Text school_label = new Text("School");
+        // school_label.setWrappingWidth(Winners.WRAPPING_WIDTH);
+        // school_label.setTextAlignment(TextAlignment.RIGHT);
+        // System.out.println("Styles associated with Text: " + school_label.getStyle());
+
+        ChoiceBox<String> schools = new ChoiceBox<String>();
+
+        school_hbox.getChildren().addAll(school_label, schools);
+        topLayout.getChildren().add(school_hbox);
+        */
+
+        // The RANK of the Winner: Or Which Place did this person get?
+
+        Text text02 = new Text("Place or Rank");
+        Spinner rank_spinner = new Spinner(1, 10, 1);
+        rank_spinner.setEditable(true);
+        topGp.add(text02, 0, 1);
+        topGp.add(rank_spinner,1,1);
+
+
+        // How many points for this Winner?
+
+        Text text03 = new Text("Points");
+        Spinner point_spinner = new Spinner(1, 10, 10);
+        point_spinner.setEditable(true);
+        topGp.add(text03,0,2);
+        topGp.add(point_spinner,1,2);
+
+
+        // The LIST OF STUDENT NAMES
+
+        ListView listview01 = new ListView();
+        ScrollPane namelv = new ScrollPane(listview01);
+        bp.setCenter(namelv);
+
+
+        // The CANCEL and OK Button.
+
+        HBox bottomLayout = new HBox();
+        bp.setBottom(bottomLayout);
+
+        Button cancel_button = new Button("Cancel");
+        cancel_button.setCancelButton(true);
+
+        cancel_button.setOnAction(
+            new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+                    rootStage.setScene(mainMenuScene);
+                }
+            }
+        );
+
+        Button ok_button = new Button("OK");
+        ok_button.setDefaultButton(false);
+        bottomLayout.getChildren().add(cancel_button);
+        bottomLayout.getChildren().add(ok_button);
+    }
+
+
+
+    /* ************************************************************************
+     * The start() method creates the main screen. We design this program so
+     * that it looks like a mobile application. Then, it would be easy to
+     * port it to android.
+     * ************************************************************************/
+     
+    @Override public void start(Stage primaryStage) {
+
+        /* Determine size of the screen. Could be tablet, smartphone, or
+           LCD monitor. */
+
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        stageHeight = bounds.getHeight();
+        stageWidth = bounds.getWidth();
+
+        rootStage = primaryStage;
+
+        /* Initialize the various Scenes. These Scenes will be switched onto the
+           rootStage if their task is called. */
+
+        initMainMenu();    // Initialize the Main Menu.
+        initWinnersEntry();   // Initialize winnersEntryScene
+
+        /* Set mainMenuScene on the rootStage. */
+
+        // rootStage.setScene(mainMenuScene);
+        rootStage.setScene(winnersEntryScene);
+        rootStage.setTitle("Private Schools Press Conference");
+
+        rootStage.show();
     }
 }
 
