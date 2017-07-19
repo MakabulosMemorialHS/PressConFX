@@ -1,11 +1,6 @@
 /* *****************************************************************
  * PenNameActivity.java
  *
- * For each Dialog in the Application, we create a new scene. The methods
- * in this class all return references to a javafx.scene.Scene object.
- * It is up to the calling function (or method) to decide what to do with
- * the Scene object.
- *
  * Robert Pascual 2016
  *
  *
@@ -45,6 +40,12 @@ public class PenNameActivity {
     public static final double HBOX_SPACING   = 8.0;
     public static final double VBOX_SPACING   = 8.0;
     public static final double WRAPPING_WIDTH = 150.0;
+    public static Scene penNameScene;
+
+    private static TextField pen_name_field;
+    private static TextField last_name_field;
+    private static TextField first_name_field;
+    private static TextField middle_name_field;
 
     /* ************************************************************************
      * This method creates the entry screen for the Pen Names entry Stage.
@@ -52,19 +53,15 @@ public class PenNameActivity {
      * javafx.Stage.Window object which we want to own this pen names Stage.
      * ***********************************************************************/
     
-    public static void show(Stage parent) {
+    public static void initialize() {
 
-        // The root of our scene graph shall be a VBox layout
-
-        Stage stage = new Stage();
-        stage.initOwner(parent);
+        // Create the Scene graph and its parent node.
 
         VBox topLayout = new VBox();
         topLayout.setAlignment(Pos.BOTTOM_LEFT);
-        Scene scene = new Scene(topLayout);
-        scene.getStylesheets().add("css/default.css");
+        penNameScene = new Scene(topLayout);
+        penNameScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
         topLayout.getStyleClass().add("activity-windows");
-        stage.setScene(scene);
 
 
         /* *****************************************************************
@@ -90,10 +87,11 @@ public class PenNameActivity {
         cancel_button.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                stage.close();
+                    PenNameActivity.exit();
                 }
             }
         );
+
         // The Banner Title
 
         Text pnlabel = new Text("Enter Student Details");
@@ -117,7 +115,7 @@ public class PenNameActivity {
         pen_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
         pen_name_label.getStyleClass().add("lighttext");
 
-        TextField pen_name_field = new TextField("");
+        pen_name_field = new TextField("");
 
         topLayout.getChildren().addAll(pen_name_label, pen_name_field);
 
@@ -127,7 +125,7 @@ public class PenNameActivity {
         last_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
         last_name_label.getStyleClass().add("lighttext");
 
-        TextField last_name_field = new TextField();
+        last_name_field = new TextField();
 
         topLayout.getChildren().addAll(last_name_label, last_name_field);
 
@@ -138,7 +136,7 @@ public class PenNameActivity {
         first_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
         first_name_label.getStyleClass().add("lighttext");
 
-        TextField first_name_field = new TextField();
+        first_name_field = new TextField();
 
         topLayout.getChildren().addAll(first_name_label, first_name_field);
 
@@ -148,7 +146,7 @@ public class PenNameActivity {
         Text middle_name_label = new Text("Middle Name");
         middle_name_label.getStyleClass().add("lighttext");
 
-        TextField middle_name_field = new TextField();
+        middle_name_field = new TextField();
 
         topLayout.getChildren().addAll(middle_name_label, middle_name_field);
 
@@ -158,9 +156,26 @@ public class PenNameActivity {
         // pen_names_stage.initOwner(owner);
         // pen_names_stage.show();
 
+        // stage.showAndWait();
+    }
+
+    public static void show(Stage stage) {
+        stage.setScene(penNameScene);
         stage.showAndWait();
     }
 
+    public static void clearFields() {
+        pen_name_field.setText("");
+        last_name_field.setText("");
+        first_name_field.setText("");
+        middle_name_field.setText("");
+    }
+
+
+    public static void exit() {
+        PenNameActivity.clearFields();
+        PressConFX.rootStage.setScene(PressConFX.mainMenuScene);
+    }
 
 }
 
