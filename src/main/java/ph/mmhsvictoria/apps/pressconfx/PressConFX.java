@@ -36,13 +36,13 @@ import javafx.stage.Screen;
 
 public class PressConFX extends Application {
 
-    /* Properties of this Application. */
+    private double stageHeight;
+    private double stageWidth;
 
-    double stageHeight;
-    double stageWidth;
-    Scene mainMenuScene;
+    public static Scene mainMenuScene;
+    public static Stage rootStage;
+
     Scene winnersEntryScene;
-    Stage rootStage;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -53,7 +53,7 @@ public class PressConFX extends Application {
         /* Create the Node for the mainMenuScene. And style it. */
 
         StackPane pane0 = new StackPane();
-        mainMenuScene = new Scene(pane0, stageWidth, stageHeight);
+        mainMenuScene = new Scene(pane0);
         mainMenuScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
 
         /* Great! Now we put things on the scene. */
@@ -125,7 +125,9 @@ public class PressConFX extends Application {
         penNamesButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                    PenNameActivity.show(rootStage);    // Change the implementation of this function.
+                    PenNameActivity.show(rootStage);
+                    // rootStage.setScene(mainMenuScene);
+                    // rootStage.show();
                 }
             }
         );
@@ -137,7 +139,7 @@ public class PressConFX extends Application {
         winnersButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                rootStage.setScene(winnersEntryScene);
+                // rootStage.setScene(winnersEntryScene);
                 }
             }
         );
@@ -149,7 +151,7 @@ public class PressConFX extends Application {
         winnersReportButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.Winners_Report(pane0);
+                // PCDialogs.Winners_Report(pane0);
                 }
             }
         );
@@ -161,7 +163,7 @@ public class PressConFX extends Application {
         schoolsReportButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.School_Winners_Report(pane0);
+                // PCDialogs.School_Winners_Report(pane0);
                 }
             }
         );
@@ -173,7 +175,7 @@ public class PressConFX extends Application {
         rankingsButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                PCDialogs.Rankings_Report(pane0);
+                // PCDialogs.Rankings_Report(pane0);
                 }
             }
         );
@@ -185,7 +187,6 @@ public class PressConFX extends Application {
                 }
             }
         );
-
 
     }
 
@@ -310,28 +311,36 @@ public class PressConFX extends Application {
      
     @Override public void start(Stage primaryStage) {
 
-        /* Determine size of the screen. Could be tablet, smartphone, or
-           LCD monitor. */
+        /*  Determine size of the screen. Could be tablet, smartphone, or
+            LCD monitor. 
 
-        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        stageHeight = bounds.getHeight();
-        stageWidth = bounds.getWidth();
+            Update: I have removed this capability. It does more harm than good. 
 
+	    Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+	    stageHeight = bounds.getHeight();
+	    stageWidth = bounds.getWidth();
+	    System.out.println("stageHeight = " + stageHeight);
+	    System.out.println("stageWidth = " + stageWidth);
+
+        */
+
+        primaryStage.setTitle("Private Schools Press Conference");
         rootStage = primaryStage;
+
 
         /* Initialize the various Scenes. These Scenes will be switched onto the
            rootStage if their task is called. */
 
-        initMainMenu();    // Initialize the Main Menu.
-        initWinnersEntry();   // Initialize winnersEntryScene
+        initMainMenu();    // Initialize the Main Menu
 
-        /* Set mainMenuScene on the rootStage. */
+        PenNameActivity.initialize();  // For the pen names.
 
-        // rootStage.setScene(mainMenuScene);
-        rootStage.setScene(winnersEntryScene);
-        rootStage.setTitle("Private Schools Press Conference");
 
-        rootStage.show();
+
+        // Now show main menu.
+
+        primaryStage.setScene(mainMenuScene);
+        primaryStage.show();
     }
 }
 
