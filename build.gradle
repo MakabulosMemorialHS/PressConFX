@@ -1,5 +1,12 @@
 apply plugin: 'java'
 
+jar {
+    manifest {
+        attributes('Main-Class' : 'ph.mmhsvictoria.apps.pressconfx.PressConFX',
+                   'Class-Path' : '.')
+    }
+}
+
 task runapp << {
     String cmd = 'java -cp build/classes/main:src/main/resources ph.mmhsvictoria.apps.pressconfx.PressConFX'
   
