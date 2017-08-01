@@ -52,14 +52,14 @@ public class PressConFX extends Application {
     private void initMainMenu() {
         /* Create the Node for the mainMenuScene. And style it. */
 
-        StackPane pane0 = new StackPane();
-        mainMenuScene = new Scene(pane0);
+        /* StackPane pane0 = new StackPane(); */
+        BorderPane bp1 = new BorderPane();
+        bp1.setPrefWidth(500);
+        mainMenuScene = new Scene(bp1);
         mainMenuScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
 
         /* Great! Now we put things on the scene. */
         
-        BorderPane bp1 = new BorderPane();
-        pane0.getChildren().add(bp1);
         bp1.getStyleClass().add("main-screen");
 
         VBox topLayout = new VBox();
@@ -126,8 +126,6 @@ public class PressConFX extends Application {
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
                     PenNameActivity.show(rootStage);
-                    // rootStage.setScene(mainMenuScene);
-                    // rootStage.show();
                 }
             }
         );
@@ -139,7 +137,7 @@ public class PressConFX extends Application {
         winnersButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                // rootStage.setScene(winnersEntryScene);
+                    WinnersEntryActivity.show(rootStage);
                 }
             }
         );
@@ -151,7 +149,7 @@ public class PressConFX extends Application {
         winnersReportButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                // PCDialogs.Winners_Report(pane0);
+                // PCDialogs.Winners_Report(bp1);
                 }
             }
         );
@@ -163,7 +161,7 @@ public class PressConFX extends Application {
         schoolsReportButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                // PCDialogs.School_Winners_Report(pane0);
+                // PCDialogs.School_Winners_Report(bp1);
                 }
             }
         );
@@ -175,7 +173,7 @@ public class PressConFX extends Application {
         rankingsButton.setOnAction(
             new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
-                // PCDialogs.Rankings_Report(pane0);
+                // PCDialogs.Rankings_Report(bp1);
                 }
             }
         );
@@ -189,118 +187,6 @@ public class PressConFX extends Application {
         );
 
     }
-
-
-
-    private void initWinnersEntry() {
-        /* ************************************************************
-         * Note the style that I am using.
-         * For each window or main dialog, my standard names are
-         *
-         * (a) topLayout for the root of the scene graph attached to the stage.
-         * (b) topScene for the scene set on the layout.
-         * ************************************************************/
-        
-        // We prep a Scene Graph.
-        // The root of our scene graph shall be a VBox layout
-
-        BorderPane bp = new BorderPane();
-        winnersEntryScene = new Scene(bp,stageWidth,stageHeight);
-
-
-        // The style for the scene graph is indicated in a CSS file.
-        // We load the CSS file and apply a rule from that CSS to
-        // the scene graph we have here.
-
-        //  winnersEntryScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
-        // topLayout.getStyleClass().add("grid2");
-
-        /* *****************************************************************
-         * Now successively add elements to the Dialog.
-         * ****************************************************************/
-
-        // The Banner Title goes to the Top Panel of BorderPane bp
-
-        VBox topLayout = new VBox();
-        bp.setTop(topLayout);
-
-        Text pnlabel = new Text("Enter Contest Winners");
-        // pnlabel.getStyleClass().add("h1");
-        topLayout.getChildren().add(pnlabel);
-
-        GridPane topGp = new GridPane();
-        topLayout.getChildren().add(topGp);
-       
-        // The Button and TextField for the CONTEST CODE.
-
-        // HBox category_hbox = new HBox(Winners.HBOX_SPACING);
-        ChoiceBox<String> contest_names = new ChoiceBox<String>();
-        TextField contest_code = new TextField("");
-
-        // category_hbox.getChildren().addAll(contest_names, contest_code);
-       
-        topGp.add(contest_code,0,0);
-        topGp.add(contest_names,1,0);
-
-        /*
-        Text school_label = new Text("School");
-        // school_label.setWrappingWidth(Winners.WRAPPING_WIDTH);
-        // school_label.setTextAlignment(TextAlignment.RIGHT);
-        // System.out.println("Styles associated with Text: " + school_label.getStyle());
-
-        ChoiceBox<String> schools = new ChoiceBox<String>();
-
-        school_hbox.getChildren().addAll(school_label, schools);
-        topLayout.getChildren().add(school_hbox);
-        */
-
-        // The RANK of the Winner: Or Which Place did this person get?
-
-        Text text02 = new Text("Place or Rank");
-        Spinner rank_spinner = new Spinner(1, 10, 1);
-        rank_spinner.setEditable(true);
-        topGp.add(text02, 0, 1);
-        topGp.add(rank_spinner,1,1);
-
-
-        // How many points for this Winner?
-
-        Text text03 = new Text("Points");
-        Spinner point_spinner = new Spinner(1, 10, 10);
-        point_spinner.setEditable(true);
-        topGp.add(text03,0,2);
-        topGp.add(point_spinner,1,2);
-
-
-        // The LIST OF STUDENT NAMES
-
-        ListView listview01 = new ListView();
-        ScrollPane namelv = new ScrollPane(listview01);
-        bp.setCenter(namelv);
-
-
-        // The CANCEL and OK Button.
-
-        HBox bottomLayout = new HBox();
-        bp.setBottom(bottomLayout);
-
-        Button cancel_button = new Button("Cancel");
-        cancel_button.setCancelButton(true);
-
-        cancel_button.setOnAction(
-            new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent e) {
-                    rootStage.setScene(mainMenuScene);
-                }
-            }
-        );
-
-        Button ok_button = new Button("OK");
-        ok_button.setDefaultButton(false);
-        bottomLayout.getChildren().add(cancel_button);
-        bottomLayout.getChildren().add(ok_button);
-    }
-
 
 
     /* ************************************************************************
@@ -334,7 +220,7 @@ public class PressConFX extends Application {
         initMainMenu();    // Initialize the Main Menu
 
         PenNameActivity.initialize();  // For the pen names.
-
+        WinnersEntryActivity.initialize();
 
 
         // Now show main menu.

@@ -161,7 +161,7 @@ public class PenNameActivity {
 
     public static void show(Stage stage) {
         stage.setScene(penNameScene);
-        stage.showAndWait();
+        stage.show();
     }
 
     public static void clearFields() {

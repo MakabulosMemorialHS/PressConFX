@@ -45,8 +45,8 @@ public class PCDialogs {
      * When this method is entered, we place as a parameter the 
      * javafx.Stage.Window object which we want to own this pen names Stage.
      * ***********************************************************************/
-    
-    public static void Pen_Names_Entry(BorderPane sp) {
+   
+    public static void initWinnersEntryScene(Stage rootStage) {
 
         /* ************************************************************
          * Note the style that I am using.
@@ -59,7 +59,7 @@ public class PCDialogs {
         // The root of our scene graph shall be a VBox layout
 
         VBox topLayout = new VBox();
-        sp.setCenter(topLayout);
+        // sp.setCenter(topLayout);
 
         // The style for the scene graph is indicated in a CSS file.
         // We load the CSS file and apply a rule from that CSS to
@@ -75,7 +75,7 @@ public class PCDialogs {
 
         Text pnlabel = new Text("Enter Student Details");
         pnlabel.getStyleClass().add("h1");
-        sp.setTop(pnlabel);
+        // sp.setTop(pnlabel);
 
         // The CHOICE BOX FOR THE SCHOOL NAME
 
