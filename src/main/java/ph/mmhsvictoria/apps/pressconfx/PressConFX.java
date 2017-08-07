@@ -36,8 +36,8 @@ import javafx.stage.Screen;
 
 public class PressConFX extends Application {
 
-    private double stageHeight;
-    private double stageWidth;
+    public static double stageHeight;
+    public static double stageWidth;
 
     public static Scene mainMenuScene;
     public static Stage rootStage;
@@ -52,18 +52,18 @@ public class PressConFX extends Application {
     private void initMainMenu() {
         /* Create the Node for the mainMenuScene. And style it. */
 
-        /* StackPane pane0 = new StackPane(); */
         BorderPane bp1 = new BorderPane();
-        bp1.setPrefWidth(500);
+        VBox topLayout = new VBox();
+            bp1.setCenter(topLayout);
+            bp1.setPrefWidth(PressConFX.stageWidth);
+            bp1.setPrefHeight(PressConFX.stageHeight);
         mainMenuScene = new Scene(bp1);
         mainMenuScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
 
         /* Great! Now we put things on the scene. */
         
-        bp1.getStyleClass().add("main-screen");
+        // bp1.getStyleClass().add("main-screen");
 
-        VBox topLayout = new VBox();
-        bp1.setCenter(topLayout);
         topLayout.getStyleClass().add("main-screen");
         topLayout.setFillWidth(true);
 
@@ -197,22 +197,23 @@ public class PressConFX extends Application {
      
     @Override public void start(Stage primaryStage) {
 
-        /*  Determine size of the screen. Could be tablet, smartphone, or
-            LCD monitor. 
+        /*  
+            Determine size of the screen. Could be tablet, smartphone, or
+            LCD monitor.  
 
-            Update: I have removed this capability. It does more harm than good. 
-
-	    Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-	    stageHeight = bounds.getHeight();
-	    stageWidth = bounds.getWidth();
-	    System.out.println("stageHeight = " + stageHeight);
-	    System.out.println("stageWidth = " + stageWidth);
-
+            Update 1: I have removed this capability. It does more harm than good.
+            Update 2: I have returned this capability into force. I don't know why I am doing this. It could be a terrible mistake.
         */
+
+	Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+	PressConFX.stageHeight = bounds.getHeight();
+	PressConFX.stageWidth  = bounds.getWidth();
+
+	// System.out.println("stageHeight = " + stageHeight);
+	// System.out.println("stageWidth = " + stageWidth);
 
         primaryStage.setTitle("Private Schools Press Conference");
         rootStage = primaryStage;
-
 
         /* Initialize the various Scenes. These Scenes will be switched onto the
            rootStage if their task is called. */

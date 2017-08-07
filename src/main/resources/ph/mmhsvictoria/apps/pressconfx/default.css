@@ -25,6 +25,30 @@
 
 /* This is the style for the topmost main screen. */
 
+.root {
+    -fx-background-color : #11192c;
+    -fx-background-image : url("blue-abstract.jpg");
+    -fx-background-repeat: repeat;   
+
+    /* The following rules are meant for background images.
+       Commented out since I don't need it for the current rule.
+       Placed here for reference. I might need them for some other rules.
+ 
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+    */
+
+    -fx-background-radius : 5.0;
+    -fx-background-insets : 5.0 5.0 5.0 5.0;
+    -fx-padding : 10pt; /* margin around the grid */
+    -fx-spacing : 15pt;  /* spaces between child nodes */
+    -fx-alignment : center; /* Alignment of the child nodes within the grid. */
+    -fx-scale-shape : true;
+}
+
+
 .main-screen {
     /* -fx-background-color : #11192c; */
     -fx-background-image : url("blue-abstract.jpg");
@@ -48,8 +72,10 @@
     -fx-scale-shape : true;
 }
 
+
 /* Windows for the various subactivities which are run when
    selected from the main window. */
+
 .activity-windows {
     /* -fx-background-color : #fff2cc; */
     -fx-background-image : url("blue-abstract.jpg");

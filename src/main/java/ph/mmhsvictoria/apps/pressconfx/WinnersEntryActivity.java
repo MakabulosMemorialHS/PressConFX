@@ -28,9 +28,11 @@ public class WinnersEntryActivity {
         // Create the Scene graph and its parent node.
 
         VBox topLayout = new VBox();
-        topLayout.setAlignment(Pos.BOTTOM_LEFT);
+            topLayout.setPrefWidth(PressConFX.stageWidth);
+            topLayout.setPrefHeight(PressConFX.stageHeight);
+            topLayout.setAlignment(Pos.BOTTOM_LEFT);
         winnersEntryScene = new Scene(topLayout);
-        winnersEntryScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
+            winnersEntryScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
         topLayout.getStyleClass().add("activity-windows");
 
 
