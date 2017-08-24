@@ -195,8 +195,7 @@ public class PressConFX extends Application {
      * port it to android.
      * ************************************************************************/
      
-    @Override public void start(Stage primaryStage) {
-
+    public void ComputeBounds() {
         /*  
             Determine size of the screen. Could be tablet, smartphone, or
             LCD monitor.  
@@ -211,6 +210,11 @@ public class PressConFX extends Application {
 
 	// System.out.println("stageHeight = " + stageHeight);
 	// System.out.println("stageWidth = " + stageWidth);
+    }
+
+    @Override public void start(Stage primaryStage) {
+
+        ComputeBounds();
 
         primaryStage.setTitle("Private Schools Press Conference");
         rootStage = primaryStage;

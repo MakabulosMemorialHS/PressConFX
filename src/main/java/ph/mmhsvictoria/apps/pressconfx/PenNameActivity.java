@@ -37,9 +37,11 @@ import javafx.stage.Window;
 
 public class PenNameActivity {
 
-    public static final double HBOX_SPACING   = 8.0;
-    public static final double VBOX_SPACING   = 8.0;
-    public static final double WRAPPING_WIDTH = 150.0;
+    public static final double HBOX_SPACING    = 8.0;
+    public static final double VBOX_SPACING    = 8.0;
+    public static final double WRAPPING_WIDTH  = 400.0;
+    public static final double MAX_WIDTH = 400.0;
+    public static final double BUTTONS_PREF_WIDTH = 150.0;
     public static Scene penNameScene;
 
     private static TextField pen_name_field;
@@ -57,46 +59,57 @@ public class PenNameActivity {
 
         // Create the Scene graph and its parent node.
 
-        VBox topLayout = new VBox();
-        topLayout.setAlignment(Pos.BOTTOM_LEFT);
-        penNameScene = new Scene(topLayout);
-        penNameScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
-        topLayout.getStyleClass().add("activity-windows");
+        BorderPane bp = new BorderPane();
+            bp.setPrefWidth(PressConFX.stageWidth);
+            bp.setPrefHeight(PressConFX.stageHeight);
+
+        penNameScene = new Scene(bp);
+            penNameScene.getStylesheets().add("ph/mmhsvictoria/apps/pressconfx/default.css");
+
+        VBox topPanel = new VBox();
+            topPanel.setAlignment(Pos.CENTER);
+            bp.setTop(topPanel);
+
+        VBox mainLayout = new VBox();
+            bp.setCenter(mainLayout);
+            mainLayout.setAlignment(Pos.CENTER);
+            mainLayout.getStyleClass().add("main-screen");
+
 
 
         /* *****************************************************************
          * Now successively add elements to the Dialog.
          * ****************************************************************/
 
+        // The Banner Title
+        Text pnlabel = new Text("Enter Student Details");
+            pnlabel.getStyleClass().add("h1");
+            topPanel.getChildren().add(pnlabel);
+
         // The CANCEL and OK Button.
         // Following the standard in mobile devices, the cancel and
         // OK buttons go to the top of the stage.
 
         Button cancel_button = new Button("<< Menu");
-        cancel_button.setCancelButton(true);
+            cancel_button.setCancelButton(true);
+            cancel_button.setPrefWidth(BUTTONS_PREF_WIDTH);
+	    cancel_button.setOnAction(
+		new EventHandler<ActionEvent>() {
+		    public void handle(ActionEvent e) {
+			PenNameActivity.exit();
+		    }
+		}
+	    );
 
         Button ok_button = new Button("Accept");
-        ok_button.setDefaultButton(false);
+            ok_button.setPrefWidth(BUTTONS_PREF_WIDTH);
+            ok_button.setDefaultButton(false);
 
         HBox cancel_ok_hbox = new HBox(PenNameActivity.HBOX_SPACING);
-        // cancel_ok_hbox.setPrefWidth(300);
-
-        cancel_ok_hbox.getChildren().addAll(cancel_button, ok_button);
-        topLayout.getChildren().add(cancel_ok_hbox);
-
-        cancel_button.setOnAction(
-            new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent e) {
-                    PenNameActivity.exit();
-                }
-            }
-        );
-
-        // The Banner Title
-
-        Text pnlabel = new Text("Enter Student Details");
-        pnlabel.getStyleClass().add("h1");
-        topLayout.getChildren().add(pnlabel);
+            // cancel_ok_hbox.setPrefWidth(300);
+            cancel_ok_hbox.setAlignment(Pos.CENTER);
+            cancel_ok_hbox.getChildren().addAll(cancel_button, ok_button);
+            topPanel.getChildren().add(cancel_ok_hbox);
 
         // The CHOICE BOX FOR THE SCHOOL NAME
 
@@ -106,49 +119,50 @@ public class PenNameActivity {
 
         ChoiceBox<String> schools = new ChoiceBox<String>();
 
-        topLayout.getChildren().addAll(school_label, schools);
+        mainLayout.getChildren().addAll(school_label, schools);
 
 
         // The student's PEN NAME or ID CODE.
-
         Text pen_name_label = new Text("Pen Name");
-        pen_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
-        pen_name_label.getStyleClass().add("lighttext");
+	    pen_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
+	    pen_name_label.getStyleClass().add("lighttext");
 
         pen_name_field = new TextField("");
+            pen_name_field.setMaxWidth(PenNameActivity.MAX_WIDTH);
 
-        topLayout.getChildren().addAll(pen_name_label, pen_name_field);
+        mainLayout.getChildren().addAll(pen_name_label, pen_name_field);
 
         // Student's LAST NAME
-
         Text last_name_label = new Text("Last Name");
-        last_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
-        last_name_label.getStyleClass().add("lighttext");
+	    last_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
+	    last_name_label.getStyleClass().add("lighttext");
 
         last_name_field = new TextField();
+            last_name_field.setMaxWidth(PenNameActivity.MAX_WIDTH);
 
-        topLayout.getChildren().addAll(last_name_label, last_name_field);
-
+        mainLayout.getChildren().addAll(last_name_label, last_name_field);
 
         // Student's FIRST NAME
 
         Text first_name_label = new Text("First Name");
-        first_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
-        first_name_label.getStyleClass().add("lighttext");
+	    first_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
+	    first_name_label.getStyleClass().add("lighttext");
 
         first_name_field = new TextField();
+            first_name_field.setMaxWidth(PenNameActivity.MAX_WIDTH);
 
-        topLayout.getChildren().addAll(first_name_label, first_name_field);
-
+        mainLayout.getChildren().addAll(first_name_label, first_name_field);
 
         // Student's MIDDLE NAME
 
         Text middle_name_label = new Text("Middle Name");
-        middle_name_label.getStyleClass().add("lighttext");
+	    middle_name_label.setWrappingWidth(PenNameActivity.WRAPPING_WIDTH);
+	    middle_name_label.getStyleClass().add("lighttext");
 
         middle_name_field = new TextField();
+            middle_name_field.setMaxWidth(PenNameActivity.MAX_WIDTH);
 
-        topLayout.getChildren().addAll(middle_name_label, middle_name_field);
+        mainLayout.getChildren().addAll(middle_name_label, middle_name_field);
 
 
 
